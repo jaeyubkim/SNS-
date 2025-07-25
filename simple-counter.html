@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방문자 카운터</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .counter-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+        .number {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .label {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .redirect-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        .manual-button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .manual-button:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-box">
+        <div class="label">방문자 수</div>
+        <div class="number" id="counter">0</div>
+        <div class="redirect-text">3초 후 노션 페이지로 이동합니다...</div>
+        <button class="manual-button" onclick="goToNotion()">지금 이동하기</button>
+    </div>
+
+    <script>
+        // 노션 페이지 URL (여기에 실제 URL을 넣으세요)
+        const NOTION_URL = 'https://even-octagon-e0d.notion.site/SNS-23a756da5a0f80e396afe85f79449825';
+        
+        // 방문자 수 증가
+        function incrementCounter() {
+            let count = localStorage.getItem('visitorCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('visitorCount', count);
+            return count;
+        }
+        
+        // 페이지 로드 시 실행
+        window.onload = function() {
+            const count = incrementCounter();
+            document.getElementById('counter').textContent = count;
+            
+            // 2초 후 자동 리다이렉트
+            setTimeout(function() {
+                window.location.href = NOTION_URL;
+            }, 2000);
+        };
+        
+        // 수동 이동 함수
+        function goToNotion() {
+            window.location.href = NOTION_URL;
+        }
+        
+        // 페이지 새로고침 시에도 카운트 증가 (테스트용)
+        window.addEventListener('beforeunload', function() {
+            // 추가 로직이 필요하면 여기에
+        });
+    </script>
+</body>
+</html> 
