@@ -62,7 +62,7 @@
     <div class="counter-box">
         <div class="label">방문자 수</div>
         <div class="number" id="counter">0</div>
-        <div class="redirect-text">3초 후 노션 페이지로 이동합니다...</div>
+        <div class="redirect-text">2초 후 노션 페이지로 이동합니다...</div>
         <button class="manual-button" onclick="goToNotion()">지금 이동하기</button>
     </div>
 
